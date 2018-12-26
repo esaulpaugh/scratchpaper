@@ -1,0 +1,26 @@
+Crypto Time Lock
+
+Separate your wallet password from yourself in time through iterated hashing.
+
+Instead of memorizing your wallet password, memorize your wallet password's seed:
+
+password = HASH(HASH(...HASH(HASH(HASH(seed)))...))
+
+or
+
+password = HASH(HASH(...HASH(HASH(HMAC(random_salt, seed)))...))
+
+Example:
+
+Seed (i.e. master password) "Jeb!2064" might produce derived password "bdrvpUu8N8xN3s7xi22jM" after 80 billion iterations.
+
+Delay is configurable via the number of iterations (for a given algorithm and hardware speed).
+
+Potential implementations:
+
+MD5, BLAKE2, or Keccak on FPGA or ASIC.
+Argon2d on general-purpose hardware.
+
+Device could retain the (optionally secret) salt and iteration settings.
+
+See also: password hashing, key derivation function, hmac, verifiable delay function
